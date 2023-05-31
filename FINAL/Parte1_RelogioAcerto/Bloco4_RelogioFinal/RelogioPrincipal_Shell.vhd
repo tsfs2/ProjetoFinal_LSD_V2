@@ -3,8 +3,9 @@ use ieee.std_logic_1164.all;
 
 entity RelogioFinal is
 
-	port (clk, pulso, div	: in std_logic;
+	port (clk, pulso			: in std_logic;
 			up, dw, tS			: in std_logic;
+			horaRom				: out std_logic_vector(4 downto 0);
 			hD, hU, mD, mU		: out std_logic_vector(6 downto 0));
 end RelogioFinal;
 
@@ -39,8 +40,10 @@ begin
 								minOut	=> s_minCont,
 								horOut	=> s_horCont);
 								
+					horaROM <= s_horCont;			
+								
 		convRel:	entity work.ConversorRelogio(compConversorRelogio)
-					port map (pulseIn	=> div,
+					port map (pulseIn	=> pulso,
 								 modo		=> s_modo,
 								 mmH		=> s_mmH,
 								 minuIn	=> s_minCont,
