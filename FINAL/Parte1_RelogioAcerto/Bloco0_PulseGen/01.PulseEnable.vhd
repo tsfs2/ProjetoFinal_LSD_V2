@@ -21,7 +21,7 @@ begin
 		if (rising_edge(clkIn)) then
 			if (enable = '1') then
 				if (s_divCounter = contagem - 1) then
-					clkOut		 <= '1';
+					clkOut		 <='1';
 					s_divCounter <= 0;
 				else
 					if (s_divCounter /= (contagem - 1)) then
