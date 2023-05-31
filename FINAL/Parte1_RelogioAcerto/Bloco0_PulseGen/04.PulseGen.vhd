@@ -14,16 +14,15 @@ architecture compPulseGen of PulseGen is
 	signal s_v0, s_v1, s_v2, s_v3	: std_logic;
 begin
 
-		Normal1:	entity work.PulseEnable(compPulseEnable)
+		Normal1: entity work.DivFreq(compDivFreq)
 					generic map (contagem => 2)
-					port map (clkIN 	=> ClockIn,
-								 enable	=> '1',
+					port map (clkIn	=> clockIn,
 								 clkOut	=> s_normal);
 		
 		Normal2:	entity work.PulseEnable(compPulseEnable)
-					generic map (contagem => 150000000)
+					generic map (contagem => 1500000000)
 					port map (clkIN 	=> ClockIn,
-								 enable	=> s_normal,
+								 enable	=> s_normal and ClockIn,
 								 clkOut	=> s_v0);
 								 
 		acel01:	entity work.PulseEnable(compPulseEnable)
@@ -45,7 +44,7 @@ begin
 								 clkOut	=> s_v3);
 								 
 		saida1:	entity work.Mux4(compMux4)
-					port map (i0	=> s_v0,
+					port map (i0	=> s_v0 and s_normal,
 								 i1	=> s_v1,
 								 i2	=> s_v2,
 								 i3	=> s_v3,
