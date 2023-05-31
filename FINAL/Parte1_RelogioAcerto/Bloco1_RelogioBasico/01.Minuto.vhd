@@ -14,8 +14,11 @@ end Minuto;
 
 architecture compMinuto of Minuto is
 signal s_cont : integer range 0 to 59;
+
 begin
 
+	assert (s_cont <= 59);
+	
 	process (clk)
 	begin
 	
@@ -23,7 +26,7 @@ begin
 			if (enL = '1') then
 				if (upD = '0') then
 					s_cont <= s_cont -1;
-				elsif (s_cont = contMax) then
+				elsif (s_cont >= contMax) then
 					s_cont <= 0;
 					contFim <= '0';
 				else
