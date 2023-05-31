@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 entity ConversorRelogio is
 
 	port (pulseIn				: in std_logic;
-			mEn, hEn				: in std_logic;
+			modo, mmH			: in std_logic;
 			minuIn				: in std_logic_vector(5 downto 0);
 			horaIn				: in std_logic_vector(4 downto 0);
 			horaD, horaU		: out std_logic_vector(6 downto 0);
@@ -23,8 +23,8 @@ begin
 								 i1(1)	=> '1',
 								 i2(0)	=> '1',
 								 i2(1)	=> pulseIn,
-								 sel(0)	=> mEn,
-								 sel(1)	=>	hEn,
+								 sel(0)	=> mmH,
+								 sel(1)	=>	modo,
 								 Yout(0)	=> s_enM,
 								 Yout(1)	=> s_enH);
 		
